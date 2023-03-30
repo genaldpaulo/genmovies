@@ -16,11 +16,10 @@ export async function generateMetadata({ params, searchParams }) {
     const res = await data.json()
 
     return {
-        title: `${res.title}`,
-        description: `${res.description}`,
+        title: `  ${res.title} | GenMovies`,
+        description: `${res.overview}`,
     };
 }
-
 
 export default async function MovieDetail({ params }) {
 
@@ -29,7 +28,7 @@ export default async function MovieDetail({ params }) {
     const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.API_KEY}`)
 
     const res = await data.json()
-    // console.log(res)
+    console.log(res)
     return (
         <div>
             <div>
