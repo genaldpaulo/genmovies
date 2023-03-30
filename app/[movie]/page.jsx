@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export async function generateStaticParams(){
+export async function generateStaticParams() {
     const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`)
     const res = await data.json()
     return res.results.map((movie) => ({
@@ -8,8 +8,22 @@ export async function generateStaticParams(){
     }))
 }
 
+//generate dynamic metadata
+export async function generateMetadata({ params, searchParams }) {
+    const { movie } = params
+    const imagePath = "https://image.tmdb.org/t/p/original"
+    const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.API_KEY}`)
+    const res = await data.json()
+
+    return {
+        title: `${res.title}`,
+        description: `${res.description}`,
+    };
+}
+
+
 export default async function MovieDetail({ params }) {
-   
+
     const { movie } = params
     const imagePath = "https://image.tmdb.org/t/p/original"
     const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.API_KEY}`)
