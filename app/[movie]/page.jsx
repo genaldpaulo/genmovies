@@ -30,20 +30,33 @@ export default async function MovieDetail({ params }) {
     const res = await data.json()
     // console.log(res)
     return (
-        <div>
-            <div>
-                <h2 className="text-2xl">{res.title}</h2>
-                <h2>{res.release_date}</h2>
-                <h2> Runtime: {res.runtime} minutes</h2>
-                <h2 className="text-sm text-white bg-green-600 inline-block my-2 py-2 px-4 rounded"> {res.status} </h2>
-                <Image className="my-12 w-original" src={imagePath + res.backdrop_path}
-                    width={1000}
-                    height={1000}
-                    alt={res.title}
-                    priority
-                />
-                <p className=""> {res.overview}</p>
-            </div>
+        // <div>
+        //     <div className="container text-[#6d6d6d]">
+        //         <h2 className="text-2xl">{res.title}</h2>
+        //         <h2>{res.release_date}</h2>
+        //         <h2> Runtime: {res.runtime} minutes</h2>
+        //         <h2 className="text-sm text-white bg-green-600 inline-block my-2 py-2 px-4 rounded"> {res.status} </h2>
+        //         <Image className="my-12 w-original" src={imagePath + res.backdrop_path}
+        //             width={1000}
+        //             height={1000}
+        //             alt={res.title}
+        //             priority
+        //         />
+        //         <p> {res.overview}</p>
+        //     </div>
+        // </div>
+
+        <div className="container mx-auto text-[#6d6d6d] flex flex-col justify-center items-start">
+            <h2 className="text-2xl">{res.title}</h2>
+            <h2>Runtime: {res.runtime} minutes</h2>
+            <h2>{res.release_date}</h2>
+            <h2 className="text-sm text-white bg-green-600 inline-block my-2 py-2 px-4 rounded">{res.status}</h2>
+            <p className="max-w-5xl">{res.overview}</p>
+            <Image className="my-6 w-original"
+                src={imagePath + res.backdrop_path}
+                width={1000}
+                height={1000}
+                alt={res.title} priority />
         </div>
     )
 }
